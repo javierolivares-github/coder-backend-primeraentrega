@@ -1,3 +1,4 @@
+// Import
 import { Router } from "express";
 import productManager from "../managers/productManager.fs.js";
 
@@ -105,4 +106,5 @@ async function destroy(req,res) {
   }
 }
 
+// Export
 export default router;

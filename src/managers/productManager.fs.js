@@ -13,7 +13,6 @@ class ProductManager {
     this.loadProducts();
   }
 
-  // LOAD
   async loadProducts() {
     try {
       const productJson = await fs.promises.readFile(this.pathFile, "utf-8");
@@ -25,7 +24,6 @@ class ProductManager {
     }
   }
 
-  // SAVE
   async saveProducts() {
     try {
       await fs.promises.writeFile(this.pathFile, JSON.stringify(this.products));
@@ -34,7 +32,6 @@ class ProductManager {
     }
   }
 
-  // CREATE
   async addProduct(title, description, price, thumbnail, code, stock) {
     const newProduct = {
       id: this.products.length + 1,
@@ -65,7 +62,6 @@ class ProductManager {
 
   }
 
-  // READ
   async getProducts(limit) {
     if (parseInt(limit) && typeof parseInt(limit) === 'number' && parseInt(limit) > 0) {
       return this.products.slice(0, parseInt(limit));
@@ -75,7 +71,6 @@ class ProductManager {
     }
   }
 
-  // READ ONE
   async getProductById(id) {
     const product = this.products.find((product) => product.id === parseInt(id));
 
@@ -88,7 +83,6 @@ class ProductManager {
     return product;
   }
 
-  // UPDATE
   async updateProduct(id, dataProduct) {  
     const index = this.products.findIndex((product) => product.id === parseInt(id));
 
@@ -109,7 +103,6 @@ class ProductManager {
     return this.products[index];
   }
 
-  // DELETE
   async deleteProduct(id) {
     const index = this.products.findIndex((product) => product.id === parseInt(id));
 
@@ -124,8 +117,10 @@ class ProductManager {
   }
 }
 
+// Initialization
 const productManager = new ProductManager();
 
+// Export
 export default productManager;
 
 // TESTING PROCESS:
